@@ -5,7 +5,7 @@ This is a dummy microservice.
 It manages users and tokens. There is one pre-created admin user. The admin user can create other users. 
 Users (admin or not) can create new tokens and refresh existing unexpired tokens.
 
-Tokens have an expiration date, set to 60 seconds passed their creation date.
+Token expiration date is set to 60 seconds after creation or refresh date.
 
 ### Specification ###
 
@@ -42,4 +42,4 @@ HTTP response status
 * 401 (Unauthorized) : call without a valid unexpired token
 * 403 (Forbidden) : call with a valid unexpired non-admin token
 
-Response : `{"username": "String"}`
+Response : `{"username": "String", "id": Long}`
