@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -25,13 +27,15 @@ public class UserService {
     public User createUser(String tokenString, String username, String password) {
 
         // retrieve mathcing token from db
-        List<Token> token = tokenRepository.findTokenByToken(tokenString);
+        Optional<Token> token = tokenRepository.findTokenByToken(tokenString).stream()
+                .filter(t -> t.getExpirationDate().after(new Date()))
+                .findAny();
 
-        if (token.size() == 0) {
+        if (!token.isPresent()) {
             throw new UnauthorizedException();
         }
 
-        if (token.get(0).getUser().getUserName().equals("admin")) {
+        if (token.get().getUser().getUserName().equals("admin")) {
             if (userRepository.findUserByUserName(username).size() > 0) {
                 throw new ConflictException();
             }

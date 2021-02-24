@@ -15,7 +15,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Service
 public class TokenService {
@@ -52,17 +52,17 @@ public class TokenService {
 
     // get an already existing token or create one if needed.
     private Token getOrCreateToken(User user) {
-        List<Token> tokens = tokenRepository.findTokenByUser(user).stream()
+        Optional<Token> token = tokenRepository.findTokenByUser(user).stream()
                 .filter(t -> t.getExpirationDate().after(new Date()))
-                .collect(Collectors.toList());
+                .findAny();
 
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());
         c.add(Calendar.SECOND, 60);  // number of seconds to add
 
         // if it exists, update the expiration date
-        if (tokens.size() > 0) {
-            Token toUpdate = tokens.get(0);
+        if (token.isPresent()) {
+            Token toUpdate = token.get();
             toUpdate.setExpirationDate(c.getTime());
             return tokenRepository.save(toUpdate);
         }
