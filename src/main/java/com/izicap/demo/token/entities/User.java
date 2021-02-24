@@ -1,0 +1,33 @@
+package com.izicap.demo.token.entities;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.*;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+
+@ToString
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@EqualsAndHashCode
+public class User {
+
+	static public String DATE_PATTERN = "yyyy-MM-dd HH:mm:ss";
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(nullable = false)
+	private Long id;
+
+	@Column(name = "user_id", nullable = true)
+	private int userId;
+
+	@Column(name = "username", nullable = true)
+	private String userName;
+
+	@Column(name = "password", nullable = true)
+	private String password;
+}
+

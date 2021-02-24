@@ -1,0 +1,44 @@
+package com.izicap.demo.token.entities;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.*;
+
+import javax.persistence.*;
+import java.util.Date;
+
+@ToString
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@EqualsAndHashCode
+public class Token {
+
+	static public String DATE_PATTERN = "yyyy-MM-dd HH:mm:ss";
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(nullable = false)
+	private Long id;
+
+	@Column(name = "token", nullable = false)
+	private String token;
+
+	@Column(name = "creation_date", nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date creationDate;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@Column(name = "exipiration_date", nullable = false)
+	private Date exipirationDate;
+
+	@ManyToOne
+	@JoinColumn(name="user_id", nullable=false)
+	private User user;
+}
+
+
+
+
