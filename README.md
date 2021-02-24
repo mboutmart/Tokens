@@ -5,7 +5,7 @@ This is a dummy microservice.
 It manages users and tokens. There is one pre-created admin user. The admin user can create other users. 
 Users (admin or not) can create new tokens and refresh existing unexpired tokens.
 
-Tokens have an expiration date. 
+Tokens have an expiration date, set to 60 seconds passed their creation date.
 
 ### Specification ###
 

@@ -12,7 +12,6 @@ import javax.annotation.PostConstruct;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -59,8 +58,7 @@ public class TokenService {
 
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());
-        c.add(Calendar.DATE, 1);  // number of days to add
-
+        c.add(Calendar.SECOND, 60);  // number of seconds to add
 
         // if it exists, update the expiration date
         if (tokens.size() > 0) {
