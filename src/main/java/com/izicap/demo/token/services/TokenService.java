@@ -54,7 +54,7 @@ public class TokenService {
     // get an already existing token or create one if needed.
     private Token getOrCreateToken(User user) {
         List<Token> tokens = tokenRepository.findTokenByUser(user).stream()
-                .filter(t -> t.getExipirationDate().after(new Date()))
+                .filter(t -> t.getExpirationDate().after(new Date()))
                 .collect(Collectors.toList());
 
         Calendar c = Calendar.getInstance();
@@ -65,7 +65,7 @@ public class TokenService {
         // if it exists, update the expiration date
         if (tokens.size() > 0) {
             Token toUpdate = tokens.get(0);
-            toUpdate.setExipirationDate(c.getTime());
+            toUpdate.setExpirationDate(c.getTime());
             return tokenRepository.save(toUpdate);
         }
 
@@ -73,8 +73,9 @@ public class TokenService {
         // if it doens't exist, create it.
         return tokenRepository.save(Token.builder()
                 .creationDate(new Date())
-                .exipirationDate(c.getTime())
+                .expirationDate(c.getTime())
                 .user(user)
+                .created(true)
                 .token(hash("" +new Date().getTime()))
                 .build());
     }

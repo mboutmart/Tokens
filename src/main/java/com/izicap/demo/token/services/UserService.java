@@ -23,7 +23,6 @@ public class UserService {
     private UserRepository userRepository;
 
     public User createUser(String tokenString, String username, String password) {
-        User admin = userRepository.findUserByUserName("admin").get(0);
 
         // retrieve mathcing token from db
         List<Token> token = tokenRepository.findTokenByToken(tokenString);

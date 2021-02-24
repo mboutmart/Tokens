@@ -1,10 +1,8 @@
 package com.izicap.demo.token.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @ToString
 @Entity
