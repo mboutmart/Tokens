@@ -32,7 +32,7 @@ public class Token {
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "exipiration_date", nullable = false)
-	private Date exipirationDate;
+	private Date expirationDate;
 
 	@ManyToOne
 	@JoinColumn(name="user_id", nullable=false)
