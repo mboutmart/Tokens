@@ -16,5 +16,13 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleUnauthorizedException(UnauthorizedException ex) {
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
+    @ExceptionHandler(ConflictException.class)
+    protected ResponseEntity<Object> handleConflictException(ConflictException ex) {
+        return new ResponseEntity<>(HttpStatus.CONFLICT);
+    }
 
+    @ExceptionHandler(ForbiddenException.class)
+    protected ResponseEntity<Object> handleForbiddenException(ForbiddenException ex) {
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    }
 }

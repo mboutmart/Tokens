@@ -32,7 +32,10 @@ public class TokenService {
     @PostConstruct
     public void initUsers() throws NoSuchAlgorithmException {
         digest = MessageDigest.getInstance("SHA-256");
-        userRepository.save(User.builder().userName("admin").password("admin").build());
+        userRepository.save(User.builder()
+                .userName("admin")
+                .password("admin")
+                .build());
     }
 
     public Token getOrCreateToken(String username, String password) {

@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface TokenRepository extends CrudRepository<Token, Long>, JpaSpecificationExecutor<Token> {
     List<Token> findTokenByUser(User user);
+    List<Token> findTokenByToken(String token);
 }

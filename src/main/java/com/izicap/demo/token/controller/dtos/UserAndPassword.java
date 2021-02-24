@@ -1,4 +1,4 @@
-package com.izicap.demo.token.controller;
+package com.izicap.demo.token.controller.dtos;
 
 import lombok.Data;
 
