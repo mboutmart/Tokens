@@ -32,7 +32,10 @@ public class TokenService {
     @PostConstruct
     public void initUsers() throws NoSuchAlgorithmException {
         digest = MessageDigest.getInstance("SHA-256");
-        userRepository.save(User.builder().userName("admin").password("admin").build());
+        userRepository.save(User.builder()
+                .userName("admin")
+                .password("admin")
+                .build());
     }
 
     public Token getOrCreateToken(String username, String password) {
@@ -51,26 +54,28 @@ public class TokenService {
     // get an already existing token or create one if needed.
     private Token getOrCreateToken(User user) {
         List<Token> tokens = tokenRepository.findTokenByUser(user).stream()
-                .filter(t -> t.getExpirationDate().before(new Date()))
+                .filter(t -> t.getExpirationDate().after(new Date()))
                 .collect(Collectors.toList());
-
-        // if it exists, update the expiration date
-        if (tokens.size() > 0) {
-            Token toUpdate = tokens.get(0);
-            toUpdate.setExpirationDate(java.sql.Timestamp.valueOf(LocalDateTime.from(new Date().toInstant()).plusDays(1)));
-            return tokenRepository.save(toUpdate);
-        }
-
 
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());
         c.add(Calendar.DATE, 1);  // number of days to add
+
+
+        // if it exists, update the expiration date
+        if (tokens.size() > 0) {
+            Token toUpdate = tokens.get(0);
+            toUpdate.setExpirationDate(c.getTime());
+            return tokenRepository.save(toUpdate);
+        }
+
 
         // if it doens't exist, create it.
         return tokenRepository.save(Token.builder()
                 .creationDate(new Date())
                 .expirationDate(c.getTime())
                 .user(user)
+                .created(true)
                 .token(hash("" +new Date().getTime()))
                 .build());
     }

@@ -1,11 +1,11 @@
 # README #
 
-This is a sample microservice.
+This is a dummy microservice.
 
-It manages users and tokens. Admin users can create other users. Users (admin or not) can create and receive a token.
+It manages users and tokens. There is one pre-created admin user. The admin user can create other users. 
+Users (admin or not) can create new tokens and refresh existing unexpired tokens.
 
-When the service starts there is a single admin user (password = admin). The admin user can create a token. Using this token, admin can create 
-admin can request a token. Other users created by admin can the create or refresh tokens.
+Tokens have an expiration date. 
 
 ### Specification ###
 
@@ -25,6 +25,7 @@ Response : `{"token": "String", "creationDate": "yyyy-MM-dd HH:mm:ss", "expirati
 Notes:
 * any user can create a token if correct username/password combination is used
 * if token is not expired, the existing token is refreshed; no new token created. In case of refresh the expiration date is extended.
+* if caller has an existing token that is expired, a new token is created.
 
 
 ## User creation ##
@@ -41,4 +42,4 @@ HTTP response status
 * 401 (Unauthorized) : call without a valid unexpired token
 * 403 (Forbidden) : call with a valid unexpired non-admin token
 
-Response : `{"token": "String", "creationDate": "yyyy-MM-dd HH:mm:ss", "expirationDate": "yyyy-MM-dd HH:mm:ss"}`
+Response : `{"username": "String"}`

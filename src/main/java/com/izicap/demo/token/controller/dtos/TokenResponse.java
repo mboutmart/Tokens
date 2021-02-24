@@ -1,4 +1,4 @@
-package com.izicap.demo.token.controller;
+package com.izicap.demo.token.controller.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.izicap.demo.token.entities.Token;

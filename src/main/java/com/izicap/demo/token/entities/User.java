@@ -1,10 +1,8 @@
 package com.izicap.demo.token.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @ToString
 @Entity
@@ -20,9 +18,6 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false)
 	private Long id;
-
-	@Column(name = "user_id", nullable = true)
-	private int userId;
 
 	@Column(name = "username", nullable = true)
 	private String userName;
