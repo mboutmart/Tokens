@@ -54,3 +54,10 @@ HTTP response status
 
 
 Response : `{"username": "String", "id": Long}`
+
+
+## How to build and run ##
+
+1. Build the service using maven
+2. Build a docker image
+3. Run the docker image. Inside the container, the service listens on port 8080. Use `docker run` with a -p argument to specify the external listening port, e.g `-p 80:8080/tcp` to expose the service on port 80.
