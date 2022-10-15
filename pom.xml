@@ -14,7 +14,7 @@
 
          
     <build>
-      <finalName>app</finalName>
+      <finalName>MyAppToken</finalName>
     </build>     
          
     <dependencies>
