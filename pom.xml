@@ -10,7 +10,12 @@
     <groupId>com.izicap</groupId>
     <artifactId>demo-token</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <description>Demo project</description>   
+    <description>Demo project</description>
+
+         
+    <build>
+      <finalName>MyAppToken</finalName>
+    </build>     
          
     <dependencies>
         <dependency>
