@@ -10,10 +10,10 @@ This Repo contains the jenkins file to run the pipelin which contains 5 stages :
 ## Prerequisites ##
 
 * locally installed : 
-** Docker
-** Jenkins
-** NodeJs
-** npm
+- Docker
+- Jenkins
+- NodeJs
+- npm
 
 ### Test plan ###
 
