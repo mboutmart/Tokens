@@ -23,4 +23,4 @@ This Repo contains the jenkins file to run the pipelin which contains 5 stages :
 ### How to run ###
  
  * Run the Jenkins pipeline shared in this repo in the file "jenkinsfile", it allows to clone the git code, build and run the project's image in a docker container.
- * The tests checks endpoints by listening to the port 8080
+ * The tests check endpoints by listening to the port 8080
